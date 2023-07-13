@@ -9,26 +9,31 @@ const App = () => {
     const hasLetters = /[a-zA-Z]/.test(password);
     const hasDigits = /\d/.test(password);
     const hasSymbols = /[!@#$%^&*()\-=_+[\]{};':"\\|,.<>/?]/.test(password);
+    const standart = ['gray', 'gray', 'gray'];
+    const weak = ['red', 'red', 'red'];
+    const easy = ['red', 'gray', 'gray'];
+    const medium = ['yellow', 'yellow', 'gray'];
+    const strong = ['green', 'green', 'green'];
 
     switch (true) {
       case password.length > 0 && password.length < 8:
-        setColors(['red', 'red', 'red']);
+        setColors(weak);
         setMessage('Your password is WEAK, upgrade please!');
         break;
       case hasLetters && hasDigits && hasSymbols:
-        setColors(['green', 'green', 'green']);
+        setColors(strong);
         setMessage('Your password is STRONG, I knew you can do it!');
         break;
       case (hasLetters && hasSymbols) || (hasLetters && hasDigits) || (hasDigits && hasSymbols):
-        setColors(['yellow', 'yellow', 'gray']);
-        setMessage('Your password is MEDIUM, you can better I believe!');
+        setColors(medium);
+        setMessage('Your password is MEDIUM, you can better I know!');
         break;
       case password.length >= 8 && (hasDigits || hasLetters || hasSymbols):
-        setColors(['red', 'gray', 'gray']);
-        setMessage('Your password is EASY, you can better I believe!');
+        setColors(easy);
+        setMessage('Your password is EASY, you can better I believe!')
         break;
       default:
-        setColors(['gray', 'gray', 'gray']);
+        setColors(standart);
         setMessage('Enter a password :)');
     }
   };
